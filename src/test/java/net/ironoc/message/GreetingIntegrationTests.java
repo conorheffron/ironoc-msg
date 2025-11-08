@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package net.ironoc.message;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
+import net.ironoc.message.domain.Greeting;
+import net.ironoc.message.domain.HelloMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

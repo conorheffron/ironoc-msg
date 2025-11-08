@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package net.ironoc.message.domain;
 
 public class HelloMessage {
 

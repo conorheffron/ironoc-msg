@@ -1,5 +1,7 @@
-package com.example.messagingstompwebsocket;
+package net.ironoc.message.controller;
 
+import net.ironoc.message.domain.Greeting;
+import net.ironoc.message.domain.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
