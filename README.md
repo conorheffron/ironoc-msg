@@ -10,15 +10,15 @@
 
 ### 1. Build Project
 ```shell
-./mvnw gradle clean build
+./gradlew clean build
 ```
 
 ### 2. Run Application
 ```shell
-./mvnw gradle bootRun
+./gradlew bootRun
 ```
 
-### 3. open a few tabs in browser, connect & see who is late to the convo
+### 3. Open a series of browser tabs, connect & see who is late to the conversation
 ```shell
 http://localhost:8080/
 ```
