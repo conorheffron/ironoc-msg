@@ -2,7 +2,7 @@
 
 [![Java CI with Gradle](https://github.com/conorheffron/ironoc-msg/actions/workflows/gradle.yml/badge.svg)](https://github.com/conorheffron/ironoc-msg/actions/workflows/gradle.yml)
 
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Overview
  - Sample client server messaging service over web sockets.
