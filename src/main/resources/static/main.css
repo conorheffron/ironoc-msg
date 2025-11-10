@@ -12,3 +12,24 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+table {
+  width: 100%;
+  table-layout: fixed; /* Forces fixed column widths */
+  border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black; /* Apply border to all cells */
+    padding: 8px;
+    text-align: left;
+}
+
+thead th {
+    border-top: 2px solid black; /* Ensure top border is visible */
+}
+th:nth-child(1) { width: 20%; }
+th:nth-child(2) { width: 80%; }
+
+.table-striped > thead > tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}

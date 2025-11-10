@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello WebSocket</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="/main.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js"></script>
     <script src="/app.js"></script>
 </head>
 <body>
@@ -17,8 +19,9 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <div id="loggedInUser"></div>
+                    <button id="registerSession" class="btn btn-default" type="submit">Register Session</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
                 </div>
@@ -27,22 +30,43 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">What is your name?</label>
-                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
+                    <label for="name">Send Private User Message</label><br />
+                    <input type="text" id="targetName" class="form-control" placeholder="SEND to here...">
+                    <input type="text" id="content" class="form-control" placeholder="Your Message here...">
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+                <button id="sendToUser" class="btn btn-default" type="submit">Send</button>
             </form>
         </div>
     </div>
+    <br /><br /><br /><br />
     <div class="row">
-        <div class="col-md-12">
-            <table id="conversation" class="table table-striped">
+        <!-- Broadcasts Table -->
+        <div class="col-md-6">
+            <table id="broadcastTable" class="table table-striped">
+                <caption>Broadcast Message</caption>
                 <thead>
-                <tr>
-                    <th>Greetings</th>
-                </tr>
+                    <tr>
+                        <th>Chat Status</th>
+                    </tr>
                 </thead>
-                <tbody id="greetings">
+                <tbody id="broadcastMessages">
+                <!-- Broadcast messages will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Private Messages Table -->
+        <div class="col-md-6">
+            <table id="privateTable" class="table table-striped">
+                <caption>Private Message</caption>
+                <thead>
+                    <tr>
+                        <th>FROM → TO</th>
+                        <th>Message Content</th>
+                    </tr>
+                </thead>
+                <tbody id="privateMessages">
+                <!-- Private messages will be inserted here -->
                 </tbody>
             </table>
         </div>

@@ -1,13 +1,13 @@
 package net.ironoc.message.domain;
 
-public class Greeting {
+public class BroadcastUserJoinedResp {
 
 	private String content;
 
-	public Greeting() {
+	public BroadcastUserJoinedResp() {
 	}
 
-	public Greeting(String content) {
+	public BroadcastUserJoinedResp(String content) {
 		this.content = content;
 	}
 
