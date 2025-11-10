@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,18 +25,18 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
 
         // InMemoryUserDetailsManager setup with three users
-        UserDetails admin = User.withUsername("conor")
-                .password(encoder.encode("conor"))  // <-- Encode the password
+        UserDetails admin = User.withUsername("batman")
+                .password(encoder.encode("batpass"))  // <-- Encode the password
                 .roles("ADMIN", "USER")
                 .build();
 
-        UserDetails user = User.withUsername("anna")
-                .password(encoder.encode("anna"))  // <-- Encode the password
+        UserDetails user = User.withUsername("wolverine")
+                .password(encoder.encode("wolvpass"))  // <-- Encode the password
                 .roles("USER")
                 .build();
 
-        UserDetails viewer = User.withUsername("eleven")
-                .password(encoder.encode("tyla"))  // <-- Encode the password
+        UserDetails viewer = User.withUsername("deadpool")
+                .password(encoder.encode("deadpass"))  // <-- Encode the password
                 .roles("USER")
                 .build();
 
@@ -54,7 +53,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    // Password Encoding
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

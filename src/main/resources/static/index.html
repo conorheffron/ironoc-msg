@@ -19,21 +19,18 @@
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
-                    <input type="text" id="name" class="form-control" placeholder="Login ID here...">
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <div id="loggedInUser"></div>
                     <button id="registerSession" class="btn btn-default" type="submit">Register Session</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
                 </div>
             </form>
         </div>
-        <br /><br />
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">Specific User Message</label><br />
-                    <input type="text" id="username" class="form-control" placeholder="Your User ID here...">
+                    <label for="name">Send Private User Message</label><br />
                     <input type="text" id="targetName" class="form-control" placeholder="SEND to here...">
                     <input type="text" id="content" class="form-control" placeholder="Your Message here...">
                 </div>
@@ -41,20 +38,35 @@
             </form>
         </div>
     </div>
+    <br /><br /><br /><br />
     <div class="row">
-        <div class="col-md-12">
-            <table id="conversation" class="table table-striped">
+        <!-- Broadcasts Table -->
+        <div class="col-md-6">
+            <table id="broadcastTable" class="table table-striped">
+                <caption>Broadcast Message</caption>
                 <thead>
                     <tr>
-                        <th>Greetings</th>
-                        <th>Messages</th>
+                        <th>Chat Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="broadcastMessages">
+                <!-- Broadcast messages will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Private Messages Table -->
+        <div class="col-md-6">
+            <table id="privateTable" class="table table-striped">
+                <caption>Private Message</caption>
+                <thead>
                     <tr>
-                        <td id="greetings"></td>
-                        <td id="messages"></td>
+                        <th>FROM → TO</th>
+                        <th>Message Content</th>
                     </tr>
+                </thead>
+                <tbody id="privateMessages">
+                <!-- Private messages will be inserted here -->
                 </tbody>
             </table>
         </div>

@@ -18,10 +18,13 @@
 ./gradlew bootRun
 ```
 
-### 3. Open a series of browser tabs, connect & see who is late to the conversation
+### 3. Open a series of browsers (Edge, Chrome, Firefox..), login, connect, register web socket session & see who is late to the conversation
 ```shell
 http://localhost:8080/
 ```
 
-![multi-incognito-tabs](./screenshots/multi-incognito-tabs.png)
+#### Login (Spoofed Security for Demo Purposes)
+![spring-security-login](./screenshots/spring-security-login.png)
 
+#### Testing in various Browsers
+![multi-browser-sessions](./screenshots/multi-browser-sessions.png)

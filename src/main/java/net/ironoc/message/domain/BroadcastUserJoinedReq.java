@@ -1,13 +1,13 @@
 package net.ironoc.message.domain;
 
-public class HelloMessage {
+public class BroadcastUserJoinedReq {
 
 	private String name;
 
-	public HelloMessage() {
+	public BroadcastUserJoinedReq() {
 	}
 
-	public HelloMessage(String name) {
+	public BroadcastUserJoinedReq(String name) {
 		this.name = name;
 	}
 

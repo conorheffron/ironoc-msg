@@ -11,34 +11,33 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import java.security.Principal;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 @Component
 public class CustomHandshakeInterceptor implements HandshakeInterceptor {
 
-    private final Map<String, String> activeSessions = new ConcurrentHashMap<>();
+    private static final Logger LOGGER = Logger.getLogger(HandshakeInterceptor.class.getName());
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
                                    WebSocketHandler wsHandler, Map<String, Object> attributes) {
-        // Example: Set a mock Principal for testing
+        // set principal
         Principal principal = request.getPrincipal();
-        Map<String, String> headers = request.getHeaders().asSingleValueMap();
+        LOGGER.info(String.format("The user principal for request is %s", principal));
         attributes.put("principal", new UsernamePasswordAuthenticationToken(principal, null));
 
         if (request instanceof ServletServerHttpRequest) {
+            // ser session ID
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
             HttpSession session = servletRequest.getServletRequest().getSession();
             attributes.put("sessionId", session.getId());
         }
-
-        // register sessions here
         return true;
     }
 
     @Override
     public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
                                WebSocketHandler wsHandler, Exception exception) {
-        // No-op
+        LOGGER.info(String.format("afterHandshake principal details %s", request.getPrincipal()));
     }
 }
