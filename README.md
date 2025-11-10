@@ -1,5 +1,9 @@
 # ironoc-msg
 
+[![Java CI with Gradle](https://github.com/conorheffron/ironoc-msg/actions/workflows/gradle.yml/badge.svg)](https://github.com/conorheffron/ironoc-msg/actions/workflows/gradle.yml)
+
+
+
 ### Overview
  - Sample client server messaging service over web sockets.
 
