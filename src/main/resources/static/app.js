@@ -1,14 +1,16 @@
+// Initialize the STOMP client
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://localhost:8080/gs-guide-websocket'
+    brokerURL: 'ws://localhost:8080/ironoc-ws',
+//    connectHeaders: {
+//        login: username, // Optional, if authentication is required
+////            passcode: 'your-password', // Optional, if authentication is required
+//        id: username // Add your custom ID here
+//    },
+    debug: (str) => {
+        console.log(str); // Debugging logs
+    },
+    reconnectDelay: 5000, // Reconnect after 5 seconds if the connection is lost
 });
-
-stompClient.onConnect = (frame) => {
-    setConnected(true);
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/greetings', (greeting) => {
-        showGreeting(JSON.parse(greeting.body).content);
-    });
-};
 
 stompClient.onWebSocketError = (error) => {
     console.error('Error with websocket', error);
@@ -21,7 +23,10 @@ stompClient.onStompError = (frame) => {
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
+    $("#send").prop("send", connected);
+
     $("#disconnect").prop("disabled", !connected);
+
     if (connected) {
         $("#conversation").show();
     }
@@ -29,10 +34,32 @@ function setConnected(connected) {
         $("#conversation").hide();
     }
     $("#greetings").html("");
+    $("#messages").html("");
 }
 
 function connect() {
     stompClient.activate();
+
+    stompClient.onConnect = (frame) => {
+        setConnected(true);
+        stompClient.subscribe('/topic/broadcast/user', (greeting) => {
+        whoami = frame.headers['user-name'];
+                     console.info('User ID: ' + whoami);
+            showGreeting(JSON.parse(greeting.body).content);
+        });
+
+        // Subscribe to user-specific queue
+        stompClient.subscribe('/user/queue/messages',//-'
+//            + $("#name").val(),
+            function (message) {
+             console.info('Headers: ' + frame);
+             whoami = frame.headers['user-name'];
+             console.info('User ID: ' + whoami);
+            const content = message.body;
+//            showMessage(JSON.parse(content).content);
+            showMessage(content);
+        });
+    };
 }
 
 function disconnect() {
@@ -48,14 +75,28 @@ function sendName() {
     });
 }
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
+function sendToUser() {
+    stompClient.publish({
+        destination: "/app/send-to-user",
+        body: JSON.stringify({'username': $("#username").val(),
+        'targetName': $("#targetName").val(),
+        'content':  $("#content").val()})
+    });
+}
+
+function showGreeting(greeting) {
+    $("#greetings").append("<tr><td>" + greeting + "</td></tr>");
+}
+
+function showMessage(message) {
+    $("#messages").append("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {
     $("form").on('submit', (e) => e.preventDefault());
     $( "#connect" ).click(() => connect());
     $( "#disconnect" ).click(() => disconnect());
-    $( "#send" ).click(() => sendName());
+    $( "#registerSession" ).click(() => sendName());
+    $( "#sendToUser" ).click(() => sendToUser());
 });
 
