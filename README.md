@@ -8,7 +8,7 @@
  - Sample client server messaging service over web sockets.
 
 ### Tech
- - JDK 17, Spring Messaging, STOMP js, Gradle 8
+ - JDK 17, Spring Messaging, STOMP js, Gradle 9
 
 ### Quick Start
 
