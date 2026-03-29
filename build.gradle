@@ -1,12 +1,12 @@
 plugins {
-	id 'org.springframework.boot' version '3.5.11'
+	id 'org.springframework.boot' version '3.5.12'
 	id 'java'
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'net.ironoc.message'
-version = '1.0.5-RELEASE'
+version = '1.0.6-RELEASE'
 
 java {
 	toolchain {
