@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'net.ironoc.message'
-version = '1.0.6-RELEASE'
+version = '1.0.7-RELEASE'
 
 java {
 	toolchain {
